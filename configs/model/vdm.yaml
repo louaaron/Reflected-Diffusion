@@ -1,0 +1,13 @@
+name: vdm
+channels: 128
+num_blocks: 32
+
+dropout: 0.1
+ema_rate: 0.9999
+scale_by_sigma: True
+
+image_fourier: True
+image_fourier_start: 6
+image_fourier_end: 8
+
+attention: False

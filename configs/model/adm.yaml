@@ -1,0 +1,10 @@
+name: adm
+model_channels: 192
+channel_mult: [1, 2, 3, 4]
+channel_mult_emb: 4
+num_blocks: 3
+attn_resolutions: [32, 16, 8]
+
+dropout: 0.1
+ema_rate: 0.9999
+scale_by_sigma: True

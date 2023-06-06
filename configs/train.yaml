@@ -1,0 +1,66 @@
+defaults:
+  - _self_
+  - model: ddpmpp
+  - data: cifar10
+  - override hydra/launcher: submitit_slurm
+
+ngpus: 1
+dataroot: datasets
+
+training:
+  batch_size: 128
+  n_iters: 1300001
+  snapshot_freq: 50000
+  log_freq: 50
+  eval_freq: 100
+  snapshot_freq_for_preemption: 10000
+  snapshot_sampling: True
+  likelihood_weighting: False
+  reduce_mean: False
+  drop_label: 0.2
+
+eval:
+  batch_size: 256
+
+sde: 
+  name: vesde
+  sigma_min: 0.01
+  sigma_max: 5
+  num_scales: 1000
+
+sampling:
+  n_steps_each: 1
+  noise_removal: True
+  probability_flow: False
+  snr: 0.01
+  method: pc
+  predictor: euler_maruyama
+  corrector: none
+  denoiser: none
+
+optim:
+  weight_decay: 0
+  optimizer: Adam
+  lr: 2e-4
+  beta1: 0.9
+  beta2: 0.999
+  eps: 1e-8
+  warmup: 5000
+  grad_clip: 1.
+
+
+hydra:
+  run:
+    dir: runs/${data.dataset}/${now:%Y.%m.%d}/${now:%H%M%S}
+  sweep:
+    dir: runs/${data.dataset}/${now:%Y.%m.%d}/${now:%H%M%S}
+    subdir: ${hydra.job.num}
+  # launcher:
+  #   max_num_timeout: null
+  #   timeout_min: null
+  #   partition: null
+  #   account: null
+  #   mem_gb: null
+  #   cpus_per_task: null
+  #   gpus_per_node: ${ngpus}
+  #   constraint: null

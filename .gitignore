@@ -1,0 +1,5 @@
+weights/
+run/
+vis/
+datasets/
+*.pyc

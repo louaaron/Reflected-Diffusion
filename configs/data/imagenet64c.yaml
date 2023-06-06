@@ -1,0 +1,5 @@
+dataset: ImageNet64C
+image_size: 64
+num_channels: 3
+classes: True
+num_classes: 1000

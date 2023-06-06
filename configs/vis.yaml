@@ -1,0 +1,41 @@
+defaults:
+  - _self_
+  - override hydra/launcher: submitit_slurm
+
+load_dir: ???
+w: 0
+label: 388
+
+sampling:
+  method: pc
+  n_steps_each: 1
+  noise_removal: True
+  snr: 0.01
+  predictor: euler_maruyama
+  corrector: none
+  denoiser: none
+  moll: 200
+  side_eps: 0.01
+
+denoiser_path: null
+
+eval:
+  ckpt: -1
+  batch_size: 100
+  rounds: 1
+
+hydra:
+  run:
+    dir: vis/${now:%Y.%m.%d}/${now:%H%M%S}
+  sweep:
+    dir: vis/${now:%Y.%m.%d}/${now:%H%M%S}
+    subdir: ${hydra.job.num}
+  # launcher:
+  #   max_num_timeout: null
+  #   timeout_min: null
+  #   partition: null
+  #   account: null
+  #   mem_gb: null
+  #   cpus_per_task: null
+  #   gpus_per_node: ${ngpus}
+  #   constraint: null

@@ -1,0 +1,4 @@
+dataset: ImageNet32
+image_size: 32
+num_channels: 3
+classes: False
