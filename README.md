@@ -57,18 +57,18 @@ Arguments can be added with `ARG_NAME=ARG_VALUE`. Interesting ones include
 label              imagenet class label (used with imagenet64 classifier-free guided model)
 w                  guidance weight (used with imagenet64 classifier-free guided model)
 sampling
-    method         "sde" or "ode"
+    method         "pc" or "ode"
 eval
     rounds         number of images to generate
     batch_size     batch size of generated images
 ```
-For more information on imagenet class lables, reference this [document](https://deeplearning.cms.waikato.ac.nz/user-guide/class-maps/IMAGENET/). As an example, to generate 4 rounds of 16 images of pandas with guidance weight 4 using the ode, simply run
+For more information on imagenet class lables, reference this [document](https://deeplearning.cms.waikato.ac.nz/user-guide/class-maps/IMAGENET/). As an example, to generate 4 rounds of 16 images of pandas with guidance weight 2.5 using the ode, simply run
 ```
-python run_vis.py load_dir=weights/imagenet64 label=388 w=4 sampling.method=ode eval.batch_size=16
+python run_vis.py load_dir=weights/imagenet64 label=388 w=2.5 sampling.method=ode eval.batch_size=16
 ```
-to get pictures like
+Changing these hyperparameters results in outputs like the follows:
 
-![pandas](assets/pandas.png)
+![pandas](assets/pandas.png) ![burgers](assets/burgers.png) ![cifar10](assets/cifar10.png)
 
 ## Training New Models
 
