@@ -62,10 +62,13 @@ eval
     rounds         number of images to generate
     batch_size     batch size of generated images
 ```
-For more information on imagenet class lables, reference this [document](https://deeplearning.cms.waikato.ac.nz/user-guide/class-maps/IMAGENET/). As an example, to generate 4 rounds of 16 images of pandas with guidance weight 2.5 using the ode, simply run
+For more information on imagenet class lables, reference this [document](https://deeplearning.cms.waikato.ac.nz/user-guide/class-maps/IMAGENET/). As an example, to generate 4 rounds of 16 images of pandas with guidance weight 4 using the ode, simply run
 ```
-python run_vis.py load_dir=weights/imagenet64 label=388 w=2.5 sampling.method=ode eval.batch_size=16
+python run_vis.py load_dir=weights/imagenet64 label=388 w=4 sampling.method=ode eval.batch_size=16
 ```
+to get pictures like
+
+![pandas](assets/pandas.png)
 
 ## Training New Models
 
@@ -117,11 +120,11 @@ sde
 optim
     lr                 learning rate of the optimizer
 ```
-The commands used for CIFAR10 image generation, CIFAR10 likelihood, ImageNet32 likelihood, and ImageNet64 image generation are respectively given below:
+The commands used for CIFAR10 image generation, CIFAR10 likelihood, ImageNet32 likelihood, and ImageNet64 image generation are respectively given below (on a 80GB gpu):
 ```
 python train.py data=cifar10 model=ddpmpp
-python train.py ngpus=4 data=cifar10 data.random_flip=False model=vdm training.n_iters=2000001 sde.sigma_min=0.0001
-python train.py ngpus=8 data=imagenet32 model=vdm training.n_iters=10000001 training.batch_size=512 sde.sigma_min=0.0001
+python train.py ngpus=4 data=cifar10 data.random_flip=False model=vdm training.n_iters=10000001 sde.sigma_min=0.0001
+python train.py ngpus=8 data=imagenet32 model=vdm training.n_iters=2000001 training.batch_size=512 sde.sigma_min=0.0001
 python train.py ngpus=8 data=imagenet64c model=adm training.n_iters=400001 training.batch_size=2048 optim.lr=1e-4
 ```
 
