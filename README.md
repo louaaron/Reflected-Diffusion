@@ -66,7 +66,7 @@ For more information on imagenet class lables, reference this [document](https:/
 ```
 python run_vis.py load_dir=weights/imagenet64 label=388 w=2.5 sampling.method=ode eval.batch_size=16
 ```
-Changing these hyperparameters results in outputs like the follows:
+Changing these hyperparameters results in outputs like the following:
 
 ![pandas](assets/pandas.png) ![burgers](assets/burgers.png) ![cifar10](assets/cifar10.png)
 
